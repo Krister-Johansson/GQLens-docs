@@ -1,0 +1,202 @@
+---
+title: Connect Your Tools
+description: Connect GQLens to Cursor, VS Code, Claude, Windsurf, and more via MCP.
+---
+
+GQLens runs as a remote MCP server. Any tool that supports
+**Streamable HTTP** MCP transport can connect to it. After
+connecting, your tool authenticates via OAuth. No API keys to
+copy.
+
+**MCP Server URL:** `https://mcp.gqlens.com`
+
+---
+
+## <img src="/logos/cursor_dark.svg" alt="" width="24" height="24" style="display:inline;vertical-align:middle;margin-right:8px" /> Cursor
+
+Cursor supports one-click install via deeplink.
+
+1. In the GQLens dashboard, go to **Connect** and click
+   **Install in Cursor**.
+2. Alternatively, add to `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "gqlens": {
+      "url": "https://mcp.gqlens.com"
+    }
+  }
+}
+```
+
+3. In Cursor MCP settings, press **Connect** next to GQLens and
+   complete sign-in.
+
+[Cursor MCP docs →](https://cursor.com/docs/mcp)
+
+---
+
+## <img src="/logos/vscode.svg" alt="" width="24" height="24" style="display:inline;vertical-align:middle;margin-right:8px" /> VS Code
+
+VS Code supports one-click install via deeplink.
+
+1. In the GQLens dashboard, go to **Connect** and click
+   **Install in VS Code**.
+2. Alternatively, add to `.vscode/mcp.json`:
+
+```json
+{
+  "servers": {
+    "gqlens": {
+      "url": "https://mcp.gqlens.com",
+      "type": "http"
+    }
+  }
+}
+```
+
+3. Authenticate when prompted by the OAuth flow.
+
+[VS Code MCP docs →](https://code.visualstudio.com/docs/copilot/customization/mcp-servers)
+
+---
+
+## <img src="/logos/claude-ai-icon.svg" alt="" width="24" height="24" style="display:inline;vertical-align:middle;margin-right:8px" /> Claude Code
+
+Claude Code uses a CLI command to add MCP servers.
+
+```bash
+claude mcp add --transport http gqlens https://mcp.gqlens.com
+```
+
+Then run `/mcp` inside Claude Code and authenticate via browser.
+
+[Claude Code MCP docs →](https://docs.claude.com/en/docs/claude-code/mcp)
+
+---
+
+## <img src="/logos/claude-ai-icon.svg" alt="" width="24" height="24" style="display:inline;vertical-align:middle;margin-right:8px" /> Claude Desktop
+
+Claude Desktop uses the Connectors UI for remote servers.
+
+1. Open **Settings → Connectors**.
+2. Click **Add** and paste:
+   `https://mcp.gqlens.com`
+3. Authenticate via the OAuth flow when prompted.
+
+[Claude Desktop remote MCP docs →](https://support.claude.com/en/articles/11503834-building-custom-connectors-via-remote-mcp-servers)
+
+---
+
+## <img src="/logos/windsurf-dark.svg" alt="" width="24" height="24" style="display:inline;vertical-align:middle;margin-right:8px" /> Windsurf
+
+Add to `~/.codeium/windsurf/mcp_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "gqlens": {
+      "url": "https://mcp.gqlens.com"
+    }
+  }
+}
+```
+
+Restart Windsurf and authenticate when prompted.
+
+[Windsurf MCP docs →](https://docs.windsurf.com/windsurf/cascade/mcp)
+
+---
+
+## <img src="/logos/cline.svg" alt="" width="24" height="24" style="display:inline;vertical-align:middle;margin-right:8px" /> Cline
+
+Add to `cline_mcp_settings.json` (accessible from the Cline MCP
+Servers panel):
+
+```json
+{
+  "mcpServers": {
+    "gqlens": {
+      "type": "streamableHttp",
+      "url": "https://mcp.gqlens.com"
+    }
+  }
+}
+```
+
+The `type` field must be `"streamableHttp"` for remote servers.
+
+[Cline remote server docs →](https://docs.cline.bot/mcp/connecting-to-a-remote-server)
+
+---
+
+## <img src="/logos/continue.png" alt="" width="24" height="24" style="display:inline;vertical-align:middle;margin-right:8px" /> Continue
+
+Create `.continue/mcpServers/gqlens.yaml` in your project:
+
+```yaml
+name: GQLens
+version: 0.0.1
+schema: v1
+mcpServers:
+  - name: GQLens
+    type: streamable-http
+    url: https://mcp.gqlens.com
+```
+
+Restart Continue and authenticate when prompted.
+
+[Continue MCP docs →](https://docs.continue.dev/customize/deep-dives/mcp)
+
+---
+
+## <img src="/logos/opencode-dark.svg" alt="" width="24" height="24" style="display:inline;vertical-align:middle;margin-right:8px" /> OpenCode
+
+Add to `opencode.json` in your project root:
+
+```json
+{
+  "mcp": {
+    "gqlens": {
+      "type": "http",
+      "url": "https://mcp.gqlens.com"
+    }
+  }
+}
+```
+
+[OpenCode MCP docs →](https://open-code.ai/docs/en/mcp-servers)
+
+---
+
+## <img src="/logos/zed-logo_dark.svg" alt="" width="24" height="24" style="display:inline;vertical-align:middle;margin-right:8px" /> Zed
+
+Add to your Zed `settings.json`:
+
+```json
+{
+  "context_servers": {
+    "gqlens": {
+      "url": "https://mcp.gqlens.com"
+    }
+  }
+}
+```
+
+Zed will prompt you to authenticate via the MCP OAuth flow.
+
+[Zed MCP docs →](https://zed.dev/docs/ai/mcp.html)
+
+---
+
+## <img src="/logos/openai_dark.svg" alt="" width="24" height="24" style="display:inline;vertical-align:middle;margin-right:8px" /> ChatGPT Desktop
+
+1. Open **Settings → Apps & Connectors**.
+2. Enable **Developer Mode** under Advanced settings.
+3. Create a new connector:
+   - **Name:** GQLens
+   - **URL:** `https://mcp.gqlens.com`
+4. Authenticate via OAuth when prompted.
+
+[ChatGPT connector docs →](https://developers.openai.com/apps-sdk/deploy/connect-chatgpt)
