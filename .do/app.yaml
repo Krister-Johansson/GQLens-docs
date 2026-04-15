@@ -1,6 +1,10 @@
 name: gqlens-docs
 region: fra
 
+domains:
+  - domain: docs.gqlens.com
+    type: PRIMARY
+
 static_sites:
   - name: docs
     github:
@@ -9,6 +13,3 @@ static_sites:
       deploy_on_push: true
     build_command: npm ci && npm run build
     output_dir: dist
-    domains:
-      - domain: docs.gqlens.com
-        type: PRIMARY
