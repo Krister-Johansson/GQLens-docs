@@ -7,6 +7,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "GQLens",
+      favicon: "/favicon.svg",
       sidebar: [
         { label: "Introduction", slug: "" },
         { label: "Getting Started", slug: "getting-started" },
